@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./images/logo.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./images/site.webmanifest" />
+    <title>Nino-OS | Status</title>
+
+    <meta content="Nino-OS | Status" property="og:title" />
+    <meta
+      content="This is the Nino-OS Status Page, here can you monitroe the serveice of the Nino-OS 🟢"
+      property="og:description"
+    />
+    <meta content="https://Nino-OS.github.io/status" property="og:url" />
+    <meta
+      content="https://nino-os.github.io/images/logo.png"
+      property="og:image"
+    />
+    <meta content="#3498db" data-react-helmet="true" name="theme-color" />
+  </head>
+  <body>
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      onclick="toggleTheme()"
+    ></button>
+
+    <button class="main-site-back" onclick="redirectToMainSite()">
+      <i class="ri-arrow-left-line"></i>
+      <div class="backfont">Back</div>
+    </button>
+
+    <header class="title-size">
+      <nav>
+        <h1>
+          The <span>Nino-OS</span> Status<i class="ri-bar-chart-box-line"></i>
+        </h1>
+      </nav>
+    </header>
+
+    <section id="section" class="section">
+      <h2>
+        Next Update: 
+        <div id="timer">00sec.</div>
+      </h2>
+    </section>
+    <script src="script.js"></script>
+
+    <section id="section" class="section">
+      <h2>Nino-OS Server</h2>
+      <p id="status-txt1">Loading ...</p>
+    </section>
+
+    <section id="section" class="section">
+      <h2>Nino-OS Panel</h2>
+      <p id="status-txt2">Loading ...</p>
+    </section>
+
+    <script>
+      window.onload = function () {
+        let timerValue = localStorage.getItem("timerValue") || 30;
+
+        updatetimer(timerValue);
+      };
+
+      function updatetimer(timeLeft1) {
+        let timerElement1 = document.getElementById("timer");
+
+        function updateTimer() {
+          let seconds1 = timeLeft1 % 60;
+
+          if (seconds1 < 10) {
+            seconds1 = "0" + seconds1;
+          }
+
+          timerElement1.textContent = `${seconds1}sec.`;
+
+          if (timeLeft1 > 0) {
+            timeLeft1--;
+            localStorage.setItem("timerValue", timeLeft1);
+          } else {
+            timeLeft1 = 30;
+            localStorage.setItem("timerValue", timeLeft1);
+          }
+
+          setTimeout(updateTimer, 1000);
+        }
+
+        updateTimer();
+      }
+    </script>
+
+    <footer>
+      <p>
+        Copyright © 2023-2024 Robotic Germany ✠. All Rights Reserved.
+        <a class="footer" href="https://Nino-OS.github.io/"></a>
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

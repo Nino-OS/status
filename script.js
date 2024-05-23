@@ -46,6 +46,38 @@ function redirectToMainSite() {
   window.location.href = "https://Nino-OS.github.io/";
 }
 
+window.onload = function () {
+  let timerValue = localStorage.getItem("timerValue") || 30;
+
+  updatetimer(timerValue);
+};
+
+function updatetimer(timeLeft1) {
+  let timerElement1 = document.getElementById("timer");
+
+  function updateTimer() {
+    let seconds1 = timeLeft1 % 60;
+
+    if (seconds1 < 10) {
+      seconds1 = "0" + seconds1;
+    }
+
+    timerElement1.textContent = `${seconds1}sec.`;
+
+    if (timeLeft1 > 0) {
+      timeLeft1--;
+      localStorage.setItem("timerValue", timeLeft1);
+    } else {
+      timeLeft1 = 30;
+      localStorage.setItem("timerValue", timeLeft1);
+    }
+
+    setTimeout(updateTimer, 1000);
+  }
+
+  updateTimer();
+}
+
 document.addEventListener("contextmenu", function (event) {
   event.preventDefault();
 });

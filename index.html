@@ -67,7 +67,6 @@
         <div id="timer">00sec.</div>
       </h2>
     </section>
-    <script src="script.js"></script>
 
     <section id="section" class="section">
       <h2>Nino-OS Server</h2>
@@ -78,40 +77,6 @@
       <h2>Nino-OS Panel</h2>
       <p id="status-txt2">Loading ...</p>
     </section>
-
-    <script>
-      window.onload = function () {
-        let timerValue = localStorage.getItem("timerValue") || 30;
-
-        updatetimer(timerValue);
-      };
-
-      function updatetimer(timeLeft1) {
-        let timerElement1 = document.getElementById("timer");
-
-        function updateTimer() {
-          let seconds1 = timeLeft1 % 60;
-
-          if (seconds1 < 10) {
-            seconds1 = "0" + seconds1;
-          }
-
-          timerElement1.textContent = `${seconds1}sec.`;
-
-          if (timeLeft1 > 0) {
-            timeLeft1--;
-            localStorage.setItem("timerValue", timeLeft1);
-          } else {
-            timeLeft1 = 30;
-            localStorage.setItem("timerValue", timeLeft1);
-          }
-
-          setTimeout(updateTimer, 1000);
-        }
-
-        updateTimer();
-      }
-    </script>
 
     <footer>
       <p>
